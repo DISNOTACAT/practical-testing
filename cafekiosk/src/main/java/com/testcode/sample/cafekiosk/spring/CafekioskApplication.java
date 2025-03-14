@@ -1,4 +1,4 @@
-package com.testcode.sample.cafekiosk;
+package com.testcode.sample.cafekiosk.spring;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
