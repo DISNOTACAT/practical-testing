@@ -10,6 +10,7 @@ import com.testcode.sample.cafekiosk.spring.domain.product.ProductType;
 import com.testcode.sample.cafekiosk.spring.domain.stock.Stock;
 import com.testcode.sample.cafekiosk.spring.domain.stock.StockRepository;
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -30,32 +31,52 @@ public class OrderService {
     List<Product> products = findProductsBy(
         productNumbers);
 
-    // 재고 차감
-    List<String> stockProductNumber = products.stream()
-        .filter(product -> ProductType.containsStockType(product.getType()))
-        .map(Product::getProductNumber)
-        .toList();
-    List<Stock> stocks = stockRepository.findAllByProductNumberIn(stockProductNumber);
-    Map<String, Stock> stockMap = stocks.stream()
-        .collect(Collectors.toMap(Stock::getProductNumber, s -> s));
 
-    Map<String, Long> productCountingMap = stockProductNumber.stream()
-        .collect(Collectors.groupingBy(p -> p, Collectors.counting()));
-
-    for(String stockNumber : stockProductNumber) {
-        Stock stock = stockMap.get(stockNumber);
-        int quantity = productCountingMap.get(stockNumber).intValue();
-
-        if(stock.isQuantityLessThan(quantity)) {
-          throw new IllegalArgumentException("재고가 부족한 상품이 있습니다");
-        }
-
-        stock.deductQuantity(quantity);
-    }
+    deductStockQuantities(products);
 
     Order order = Order.create(products, registerDateTime);
     Order savedOrder = orderRepository.save(order);
     return OrderResponse.of(savedOrder);
+  }
+
+  private void deductStockQuantities(List<Product> products) {
+    List<String> stockProductNumber = extractStockProductNumbers(products);
+
+    Map<String, Stock> stockMap = createStockMapBy(
+        stockProductNumber);
+    Map<String, Long> productCountingMap = createCountingMapBy(
+        stockProductNumber);
+
+    for(String stockNumber : new HashSet<>(stockProductNumber)) {
+        Stock stock = stockMap.get(stockNumber);
+        int quantity = productCountingMap.get(stockNumber).intValue();
+
+        if(stock.isQuantityLessThan(quantity)) {
+          throw new IllegalArgumentException("재고가 부족한 상품이 있습니다.");
+        }
+        stock.deductQuantity(quantity);
+    }
+  }
+
+  private static Map<String, Long> createCountingMapBy(
+      List<String> stockProductNumber) {
+    return stockProductNumber.stream()
+        .collect(Collectors.groupingBy(p -> p, Collectors.counting()));
+  }
+
+  private Map<String, Stock> createStockMapBy(
+      List<String> stockProductNumber) {
+    List<Stock> stocks = stockRepository.findAllByProductNumberIn(
+        stockProductNumber);
+    return stocks.stream()
+        .collect(Collectors.toMap(Stock::getProductNumber, s -> s));
+  }
+
+  private static List<String> extractStockProductNumbers(List<Product> products) {
+    return products.stream()
+        .filter(product -> ProductType.containsStockType(product.getType()))
+        .map(Product::getProductNumber)
+        .toList();
   }
 
 
