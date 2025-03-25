@@ -1,11 +1,12 @@
 package com.testcode.sample.cafekiosk.spring.api.service.order.response;
 
-import com.testcode.sample.cafekiosk.spring.api.service.product.response.ProductResponse;
+import com.testcode.sample.cafekiosk.spring.api.service.product.ProductResponse;
 import com.testcode.sample.cafekiosk.spring.domain.order.Order;
 import java.time.LocalDateTime;
 import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Getter
 public class OrderResponse {

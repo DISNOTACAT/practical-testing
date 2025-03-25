@@ -1,4 +1,4 @@
-package com.testcode.sample.cafekiosk.spring.api.service.product.response;
+package com.testcode.sample.cafekiosk.spring.api.service.product;
 
 import com.testcode.sample.cafekiosk.spring.domain.product.Product;
 import com.testcode.sample.cafekiosk.spring.domain.product.ProductSellingStatus;

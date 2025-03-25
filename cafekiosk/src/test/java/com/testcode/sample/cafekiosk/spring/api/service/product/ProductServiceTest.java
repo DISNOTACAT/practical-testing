@@ -6,7 +6,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 
 import com.testcode.sample.cafekiosk.spring.api.controller.product.dto.request.ProductCreateRequest;
-import com.testcode.sample.cafekiosk.spring.api.service.product.response.ProductResponse;
 import com.testcode.sample.cafekiosk.spring.domain.product.Product;
 import com.testcode.sample.cafekiosk.spring.domain.product.ProductRepository;
 import com.testcode.sample.cafekiosk.spring.domain.product.ProductSellingStatus;

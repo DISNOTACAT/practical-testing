@@ -1,7 +1,6 @@
 package com.testcode.sample.cafekiosk.spring.api.service.product;
 
 import com.testcode.sample.cafekiosk.spring.api.controller.product.dto.request.ProductCreateRequest;
-import com.testcode.sample.cafekiosk.spring.api.service.product.response.ProductResponse;
 import com.testcode.sample.cafekiosk.spring.domain.product.Product;
 import com.testcode.sample.cafekiosk.spring.domain.product.ProductRepository;
 import com.testcode.sample.cafekiosk.spring.domain.product.ProductSellingStatus;
@@ -47,6 +46,5 @@ public class ProductService {
     int lastestProductNumberInt = Integer.valueOf(lastestProductNumber) + 1;
     return String.format("%03d", lastestProductNumberInt);
   }
-
 
 }
