@@ -25,10 +25,10 @@ class OrderControllerTest {
   private MockMvc mockMvc;
 
   @Autowired
-  private ObjectMapper objectMapper;
+  private ObjectMapper objectMapper; //json 직렬화 역직렬화
 
   @MockitoBean
-  private OrderService orderService;
+   OrderService orderService;
 
   @DisplayName("신규 주문을 등록한다.")
   @Test
@@ -49,7 +49,7 @@ class OrderControllerTest {
         .andExpect(jsonPath("$.code").value("200"))
         .andExpect(jsonPath("$.status").value("OK"))
         .andExpect(jsonPath("$.message").value("OK"));
-    ;
+
   }
 
   @DisplayName("상품 번호 리스트는 필수입니다.")

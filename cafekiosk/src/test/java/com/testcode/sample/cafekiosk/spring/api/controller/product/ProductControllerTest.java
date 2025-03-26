@@ -11,22 +11,17 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.testcode.sample.cafekiosk.spring.api.controller.product.dto.request.ProductCreateRequest;
 import com.testcode.sample.cafekiosk.spring.api.service.product.ProductResponse;
 import com.testcode.sample.cafekiosk.spring.api.service.product.ProductService;
-import com.testcode.sample.cafekiosk.spring.domain.order.OrderRepository;
-import com.testcode.sample.cafekiosk.spring.domain.product.ProductRepository;
 import com.testcode.sample.cafekiosk.spring.domain.product.ProductSellingStatus;
 import com.testcode.sample.cafekiosk.spring.domain.product.ProductType;
-import com.testcode.sample.cafekiosk.spring.domain.stock.StockRepository;
 import java.util.List;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.MediaType;
-import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
-@ActiveProfiles("test")
 @WebMvcTest(controllers = ProductController.class)
 class ProductControllerTest {
 
@@ -38,11 +33,6 @@ class ProductControllerTest {
 
   @MockitoBean
   private ProductService productService;
-
-  private ProductRepository productRepository;
-  private OrderRepository orderRepository;
-  private StockRepository stockRepository;
-
 
   @DisplayName("신규 상품을 등록한다.")
   @Test

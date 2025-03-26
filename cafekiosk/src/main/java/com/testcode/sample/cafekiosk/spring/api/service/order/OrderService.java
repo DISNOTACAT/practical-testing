@@ -16,6 +16,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @RequiredArgsConstructor
@@ -25,6 +26,7 @@ public class OrderService {
   private final OrderRepository orderRepository;
   private final StockRepository stockRepository;
 
+  @Transactional
   public OrderResponse createOrder(OrderCreateRequest request,
       LocalDateTime registerDateTime) {
     List<String> productNumbers = request.getProductNumbers();
