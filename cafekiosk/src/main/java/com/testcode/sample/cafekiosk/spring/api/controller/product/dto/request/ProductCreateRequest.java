@@ -1,6 +1,6 @@
 package com.testcode.sample.cafekiosk.spring.api.controller.product.dto.request;
 
-import com.testcode.sample.cafekiosk.spring.domain.product.Product;
+import com.testcode.sample.cafekiosk.spring.api.service.product.ProductCreateServiceRequest;
 import com.testcode.sample.cafekiosk.spring.domain.product.ProductSellingStatus;
 import com.testcode.sample.cafekiosk.spring.domain.product.ProductType;
 import jakarta.validation.constraints.NotBlank;
@@ -32,9 +32,8 @@ public class ProductCreateRequest {
     this.price = price;
   }
 
-  public Product toEntity(String nextProductNumber) {
-    return Product.builder()
-        .productNumber(nextProductNumber)
+  public ProductCreateServiceRequest toService() {
+    return ProductCreateServiceRequest.builder()
         .type(type)
         .sellingStatus(sellingStatus)
         .name(name)

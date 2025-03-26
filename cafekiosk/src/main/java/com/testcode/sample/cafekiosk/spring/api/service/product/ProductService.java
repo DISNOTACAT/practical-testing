@@ -27,7 +27,7 @@ public class ProductService {
   }
 
   @Transactional
-  public ProductResponse createProduct(ProductCreateRequest request) {
+  public ProductResponse createProduct(ProductCreateServiceRequest request) {
 
     String nextProductNumber = createNextProductNumber();
 

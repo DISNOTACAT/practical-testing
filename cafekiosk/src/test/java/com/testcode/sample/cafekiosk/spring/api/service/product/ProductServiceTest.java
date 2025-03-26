@@ -5,7 +5,6 @@ import static com.testcode.sample.cafekiosk.spring.domain.product.ProductType.HA
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 
-import com.testcode.sample.cafekiosk.spring.api.controller.product.dto.request.ProductCreateRequest;
 import com.testcode.sample.cafekiosk.spring.domain.product.Product;
 import com.testcode.sample.cafekiosk.spring.domain.product.ProductRepository;
 import com.testcode.sample.cafekiosk.spring.domain.product.ProductSellingStatus;
@@ -40,7 +39,7 @@ class ProductServiceTest {
     Product product = createProduct("001", HANDMADE, SELLING, "아메리카노", 4000);
     productRepository.saveAll(List.of(product));
 
-    ProductCreateRequest request = ProductCreateRequest.builder()
+    ProductCreateServiceRequest request = ProductCreateServiceRequest.builder()
         .type(HANDMADE)
         .sellingStatus(SELLING)
         .name("카푸치노")
@@ -69,7 +68,7 @@ class ProductServiceTest {
   @Test
   void createProductWhenProductIsEmpty() {
     // given
-    ProductCreateRequest request = ProductCreateRequest.builder()
+    ProductCreateServiceRequest request = ProductCreateServiceRequest.builder()
         .type(HANDMADE)
         .sellingStatus(SELLING)
         .name("카푸치노")

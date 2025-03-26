@@ -1,5 +1,6 @@
 package com.testcode.sample.cafekiosk.spring.api.controller.order.request;
 
+import com.testcode.sample.cafekiosk.spring.api.service.order.request.OrderCreateServiceRequest;
 import jakarta.validation.constraints.NotEmpty;
 import java.util.List;
 import lombok.Builder;
@@ -16,5 +17,11 @@ public class OrderCreateRequest {
   @Builder
   private OrderCreateRequest(List<String> productNumbers) {
     this.productNumbers = productNumbers;
+  }
+
+  public OrderCreateServiceRequest toService() {
+    return OrderCreateServiceRequest.builder()
+        .productNumbers(productNumbers)
+        .build();
   }
 }
