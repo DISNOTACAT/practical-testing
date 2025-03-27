@@ -21,7 +21,7 @@ import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-@ExtendWith(MockitoExtension.class)
+@ExtendWith(MockitoExtension.class) // @Mock 사용시 필수
 class MailServiceTest {
 
   @Mock
@@ -36,10 +36,6 @@ class MailServiceTest {
   @Test
   void sendMail() {
     // given
-//    Mockito.when(mailSendClient.sendMail(anyString(), anyString(), anyString(), anyString()))
-//        .thenReturn(true);
-
-    // given절에 해당할 수 있도록 Mockito를 한번 더 감싼 BDD 스타일 테스트 코드
     BDDMockito.given(mailSendClient.sendMail(anyString(), anyString(), anyString(), anyString()))
         .willReturn(true);
 
