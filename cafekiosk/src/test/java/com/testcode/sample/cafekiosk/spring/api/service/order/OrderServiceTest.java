@@ -8,7 +8,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.assertj.core.api.Assertions.tuple;
 
-import com.testcode.sample.cafekiosk.spring.api.controller.order.request.OrderCreateRequest;
 import com.testcode.sample.cafekiosk.spring.api.service.order.request.OrderCreateServiceRequest;
 import com.testcode.sample.cafekiosk.spring.api.service.order.response.OrderResponse;
 import com.testcode.sample.cafekiosk.spring.domain.order.OrderRepository;
@@ -20,7 +19,6 @@ import com.testcode.sample.cafekiosk.spring.domain.stock.Stock;
 import com.testcode.sample.cafekiosk.spring.domain.stock.StockRepository;
 import java.time.LocalDateTime;
 import java.util.List;
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

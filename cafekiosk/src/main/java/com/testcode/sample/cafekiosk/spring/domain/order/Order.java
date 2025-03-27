@@ -16,6 +16,7 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import lombok.AccessLevel;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -38,8 +39,9 @@ public class Order extends BaseEntity {
   @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
   private List<OrderProduct> orderProducts = new ArrayList<>();
 
-  private Order(List<Product> products, LocalDateTime registerDateTime){
-    this.orderStatus = OrderStatus.INIT;
+  @Builder
+  private Order(List<Product> products, OrderStatus orderStatus, LocalDateTime registerDateTime) {
+    this.orderStatus = orderStatus;
     this.totalPrice = calculateTotalPrice(products);
     this.registerDateTime = registerDateTime;
     this.orderProducts = products.stream()
@@ -54,6 +56,10 @@ public class Order extends BaseEntity {
 
   public static Order create(List<Product> products,
       LocalDateTime registerDateTime) {
-    return new Order(products, registerDateTime);
+    return Order.builder()
+        .orderStatus(OrderStatus.INIT)
+        .products(products)
+        .registerDateTime(registerDateTime)
+        .build();
   }
 }
