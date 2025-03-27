@@ -14,16 +14,17 @@ import com.testcode.sample.cafekiosk.spring.domain.history.mail.MailSendHistoryR
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.BDDMockito;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-@ExtendWith(MockitoExtension.class) // @Mock 사용시 필수
+@ExtendWith(MockitoExtension.class)
 class MailServiceTest {
 
-  @Spy
+  @Mock
   private MailSendClient mailSendClient;
   @Mock
   private MailSendHistoryRepository mailSendHistoryRepository;
@@ -35,13 +36,12 @@ class MailServiceTest {
   @Test
   void sendMail() {
     // given
-//    @Spy 사용시 when 사용 불가 do 사용
 //    Mockito.when(mailSendClient.sendMail(anyString(), anyString(), anyString(), anyString()))
 //        .thenReturn(true);
 
-    doReturn(true)
-        .when(mailSendClient) // 내부 여러 메서드가 있을 때, 하위에 명시된 메서드만 목으로 돌림. 그외는 실제 객체로 동작함 (일부만 stubbing하고 싶을 때 사용)
-        .sendMail(anyString(), anyString(), anyString(), anyString());
+    // given절에 해당할 수 있도록 Mockito를 한번 더 감싼 BDD 스타일 테스트 코드
+    BDDMockito.given(mailSendClient.sendMail(anyString(), anyString(), anyString(), anyString()))
+        .willReturn(true);
 
     // when
     boolean result = mailService.sendMail("","","", "");
