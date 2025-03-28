@@ -19,7 +19,7 @@ class AmericanoTest {
   void getPrice() {
     Americano americano = new Americano();
     assertThat(americano.getPrice()).isGreaterThan(0);
-    assertThat("아메리카노").isEqualTo(americano.getPrice());
+    assertThat(4000).isEqualTo(americano.getPrice());
   }
 
 }

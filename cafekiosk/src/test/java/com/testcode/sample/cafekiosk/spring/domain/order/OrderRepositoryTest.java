@@ -33,7 +33,7 @@ class OrderRepositoryTest {
   @Test
   void findOrdersByOrderStatusINIT() {
     // given
-    LocalDateTime givenStartDateTime = LocalDateTime.now();
+    LocalDateTime givenStartDateTime = LocalDateTime.of(2025,03,28,10,00);
     LocalDateTime givenEndDateTime = givenStartDateTime.plusDays(1);
     OrderStatus givenOrderStatus = OrderStatus.INIT;
 

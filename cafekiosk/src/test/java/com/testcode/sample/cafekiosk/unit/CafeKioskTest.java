@@ -44,7 +44,6 @@ class CafeKioskTest {
   void addZeroBeverages() {
     CafeKiosk cafeKiosk = new CafeKiosk();
     Americano americano = new Americano();
-    cafeKiosk.add(americano, 0);
 
     assertThatThrownBy(() -> cafeKiosk.add(americano, 0))
         .isInstanceOf(IllegalArgumentException.class)
@@ -77,18 +76,6 @@ class CafeKioskTest {
     cafeKiosk.clear();
     assertThat(cafeKiosk.getBeverages()).isEmpty();
 
-  }
-
-  @Test
-  void createOrder() {
-    CafeKiosk cafeKiosk = new CafeKiosk();
-    Americano americano = new Americano();
-
-    cafeKiosk.add(americano);
-
-    Order order = cafeKiosk.createOrder();
-    assertThat(order.getBeverages()).hasSize(1);
-    assertThat(order.getBeverages().get(0).getName()).contains("아메리카노");
   }
 
   @Test
