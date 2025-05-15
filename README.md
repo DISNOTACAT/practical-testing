@@ -44,7 +44,7 @@
 
 ---
 
-## 섹션 7. Mock을 마주하는 자세 (6개 ∙ 1시간 26분)
+## 섹션 7. Mock을 마주하는 자세
 27. Mockito로 Stubbing하기 (42:52)  
 28. Test Double (10:42)  
 29. @Mock, @Spy, @InjectMocks (18:59)  
